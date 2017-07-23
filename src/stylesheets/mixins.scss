@@ -1,0 +1,7 @@
+@mixin width-1 {
+  width: calc(100% / 12);
+}
+
+@mixin width-10 {
+  width: calc(100% * 10 / 12);
+}

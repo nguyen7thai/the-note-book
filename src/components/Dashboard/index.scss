@@ -1,0 +1,11 @@
+.bebe {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.main-area {
+  flex: 2;
+  position: relative;
+}

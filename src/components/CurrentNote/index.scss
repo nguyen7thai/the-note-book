@@ -1,0 +1,71 @@
+@import '../../stylesheets/base';
+
+.current-note {
+  width: $width-9;
+  padding: 30px;
+  height: 100%;
+  position: absolute;
+  right: 0;
+
+  textarea {
+    border: 0;
+    width: 100%;
+    height: calc(100% - 55px);
+    resize: none;
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.bottom-actions {
+  display: flex;
+  justify-content: space-between;
+
+  .btn-delete-note {
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .save-status {
+    &.saving {
+      color: $text-color-gray;
+    }
+    &.saved {
+      color: $text-color-black;
+    }
+  }
+}
+
+
+.title-wrapper {
+  display: flex;
+  height: 55px;
+}
+
+.title-action {
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: underline;
+  width: 80px;
+  padding-left: 10px;
+}
+
+.title-text,
+.title-input {
+  font-size: $font-size-large;
+  font-weight: bold;
+  display: inline-block;
+  flex: 2;
+  padding: 10px 0;
+  margin-bottom: 10px;
+}
+
+.title-input {
+  border: 0;
+  border-bottom: 1px solid $color-yellow;
+  &:focus {
+    outline: none;
+  }
+}
