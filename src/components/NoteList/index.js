@@ -7,6 +7,10 @@ import { getHitNotes, getNotesSortedIds } from 'selectors'
 import styles from './index.scss'
 import CSSModules from 'react-css-modules'
 import classnames from 'classnames'
+import CurrentNote from 'components/CurrentNote'
+import MediaQuery from 'react-responsive'
+import { Desktop, Mobile } from 'utils/responsive'
+import { Route, Link } from 'react-router-dom'
 
 const NoteList = CSSModules(({ notes, sortedIds, current, selectNote }) => {
   return <div styleName='note-list'>
@@ -14,7 +18,12 @@ const NoteList = CSSModules(({ notes, sortedIds, current, selectNote }) => {
       {
         sortedIds.map((id => (
           <li key={id} onClick={() => selectNote(id)} styleName={classnames({current: id === current})}>
-            {notes[id].title}
+            <Desktop>
+              <span>{notes[id].title}</span>
+            </Desktop>
+            <Mobile>
+              <Link to={`/current-note/${id}`}>{notes[id].title}</Link>
+            </Mobile>
           </li>
         )))
       }

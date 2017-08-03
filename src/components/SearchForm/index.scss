@@ -5,11 +5,18 @@
   border-bottom: 1px solid $color-gray;
   width: 100%;
 
+  @include mobile {
+    padding: 10px;
+  }
+
   .control-group {
     position: relative;
-    height: 80px;
     border-radius: 10px;
     box-shadow: $box-shadow-gray;
+
+    @include mobile {
+      box-shadow: none;
+    }
   }
 
   input {
@@ -19,7 +26,7 @@
     border: 1px solid $color-black;
     border-radius: 10px;
     color: $text-color-black;
-    font-size: 37px;
+    font-size: $font-size-x-large;
 
     &:focus {
       outline: none;
@@ -28,6 +35,15 @@
         background-color: $color-yellow;
         border: 2px solid $color-yellow;
       }
+    }
+
+    @include mobile {
+      border: 0;
+      border-radius: 3px;
+      font-size: $font-size-normal;
+      font-weight: normal;
+      height: 40px;
+      padding: 5px;
     }
   }
 }
@@ -42,6 +58,12 @@
   background-color: $color-white;
   border: 1px solid $color-black;
   border-radius: 10px;
+
+  @include mobile {
+    height: 40px;
+    border-radius: 3px;
+    padding: 10px 3px;
+  }
 
   &:hover {
     background-color: $color-yellow;

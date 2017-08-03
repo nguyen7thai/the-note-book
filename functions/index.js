@@ -46,7 +46,7 @@ exports.indexentry = functions.database.ref('/notes/{noteId}').onWrite(event => 
 });
 
 exports.deleteentry = functions.database.ref('/notes/{noteId}').onDelete(event => {
-  return index.deleteObject(noteId)
+  return index.deleteObject(event.params.noteId)
 });
 
 // Starts a search query whenever a query is requested (by adding one to the `/search/queries`

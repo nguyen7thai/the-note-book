@@ -4,8 +4,9 @@ import { changeSearchKeyword, sendSearchRequest, toggleSearchMode } from 'module
 import styles from './index.scss'
 import CSSModules from 'react-css-modules'
 import { createNewNote } from 'modules/notes'
+import { withRouter } from 'react-router-dom'
 
-let SearchForm = CSSModules(({ keyword, changeSearchKeyword, sendSearchRequest, toggleSearchMode, createNewNote }) => {
+let SearchForm = CSSModules(({ history, keyword, changeSearchKeyword, sendSearchRequest, toggleSearchMode, createNewNote }) => {
   return (
     <div styleName='search-form'>
       <div styleName='control-group'>
@@ -21,7 +22,11 @@ let SearchForm = CSSModules(({ keyword, changeSearchKeyword, sendSearchRequest, 
         />
         {
           keyword.length > 0 &&
-          <span styleName='btn-new-note' onClick={() => createNewNote(keyword)}>
+          <span styleName='btn-new-note' onClick={(e) => {
+              createNewNote(keyword)
+              history.push('/current-note')
+            }}
+          >
             New Note
           </span>
         }
@@ -31,7 +36,7 @@ let SearchForm = CSSModules(({ keyword, changeSearchKeyword, sendSearchRequest, 
 }, styles)
 
 const mapStateToProps = (state, props) => ({
-  keyword: state.search.keyword,
+  keyword: state.search.keyword
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -47,10 +52,10 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   createNewNote: (keyword) => dispatch(createNewNote(keyword, ''))
 })
 
-SearchForm = connect(
+SearchForm = withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(SearchForm)
+)(SearchForm))
 
 
 export default SearchForm

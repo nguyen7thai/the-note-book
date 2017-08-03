@@ -5,3 +5,27 @@
 @mixin width-10 {
   width: calc(100% * 10 / 12);
 }
+
+@mixin desktop {
+  @media (min-width: #{$breakpoint-mobile}) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: #{$breakpoint-mobile}) {
+    @content;
+  }
+}
+
+@mixin only-on-desktop {
+  @include mobile {
+    display: none !important;
+  }
+}
+
+@mixin only-on-mobile {
+  @include desktop {
+    display: none !important;
+  }
+}

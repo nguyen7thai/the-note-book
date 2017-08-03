@@ -5,13 +5,17 @@ import SearchForm from 'components/SearchForm'
 import NoteList from 'components/NoteList'
 import CurrentNote from 'components/CurrentNote'
 import NoteForm from 'components/NoteForm'
+import { Route, Link } from 'react-router-dom'
+import { Desktop } from 'utils/responsive'
 
 const Dashboard = CSSModules(() => (
   <div styleName='bebe'>
-    <SearchForm />
+    <SearchForm history={ history } />
     <div styleName='main-area'>
       <NoteList />
-      <CurrentNote />
+      <Desktop>
+        <CurrentNote />
+      </Desktop>
     </div>
   </div>
 ), styles)

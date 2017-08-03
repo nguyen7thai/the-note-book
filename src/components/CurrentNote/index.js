@@ -2,10 +2,22 @@ import React from 'react'
 import { connect } from 'react-redux'
 import styles from './index.scss'
 import CSSModules from 'react-css-modules'
+import { Mobile } from 'utils/responsive'
 import { handleNoteContentChange, handleNoteTitleChange, toggleEditTitleMode, sendDeleteNoteRequest } from 'modules/notes'
+import { Link } from 'react-router-dom'
 
-const CurrentNote = CSSModules(({ note, editingNote, editingTitle, handleNoteContentChange, handleNoteTitleChange, toggleEditTitleMode, deleteNote }) => {
-  return note && <div styleName='current-note'>
+const getNoteId = (state, ownProps) => {
+  if (ownProps.match && ownProps.match.params && ownProps.match.params.id) {
+    return ownProps.match.params.id
+  }
+  return state.notes.current
+}
+
+const CurrentNote = CSSModules(({ note, editingNote, editingTitle, handleNoteContentChange, className, handleNoteTitleChange, toggleEditTitleMode, deleteNote }) => {
+  return note && <div className={className} styleName='current-note'>
+      <Mobile styleName='top-navigation'>
+        <Link to='/'>{'< Back'}</Link>
+      </Mobile>
       <div styleName='title-wrapper'>
         {
           editingTitle
@@ -40,8 +52,8 @@ const CurrentNote = CSSModules(({ note, editingNote, editingTitle, handleNoteCon
     </div>
 }, styles)
 
-const mapStateToProps = (state) => ({
-  note: state.notes.all[state.notes.current],
+const mapStateToProps = (state, ownProps) => ({
+  note: state.notes.all[getNoteId(state, ownProps)],
   editingNote: state.notes.editingNote,
   editingTitle: state.notes.editingTitle
 })

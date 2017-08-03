@@ -21,7 +21,9 @@ export function listenToNotes(cb, error) {
   ref.child('notes').orderByChild('updatedAt').on('value', snapshot => {
     const notes = snapshot.val() || {}
     cb(notes)
-  }, error)
+  }, (message) => {
+    console.log('cannot listen from firebase: ', message)
+  })
 }
 
 export function updateNote(id, content) {

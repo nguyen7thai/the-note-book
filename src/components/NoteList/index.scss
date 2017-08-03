@@ -7,6 +7,10 @@
   position: absolute;
   overflow-y: scroll;
 
+  @include mobile {
+    width: 100%;
+  }
+
   ul {
     padding: 0;
     margin: 0;
@@ -15,11 +19,18 @@
 
   li {
     cursor: pointer;
-    padding: 20px 10px;
     border-bottom: 1px solid $color-gray;
 
     &.current {
       background: $color-yellow;
+    }
+
+    span, a {
+      display: inline-block;
+      width: 100%;
+      padding: 20px 10px;
+      text-decoration: none;
+      color: $text-color-black;
     }
   }
 }
